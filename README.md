@@ -1,1 +1,1 @@
-# testesFuncionaisExcerciocios
+# testesFuncionaisExcercios
