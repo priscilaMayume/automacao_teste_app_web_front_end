@@ -109,5 +109,80 @@ public class TesteCampoTreinamento {
             }
         }
         Assert.assertTrue(encontrou);
+
+        driver.quit();
+    }
+
+    @Test
+    public void deveVerificarValoresComboMultiplo() {
+        System.setProperty("webdriver.gecko.driver", "/home/local/CONDUCTOR/priscila.hirotsu/Documentos/projetos/PESSOAL/testeSelium/src/main/resources/firefox/geckodriver");
+        WebDriver driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
+
+        //identificar o campo do combo
+        WebElement element = driver.findElement(By.id("elementosForm:esportes"));
+        //selecionar um elemento do combo
+        Select combo = new Select(element);
+        //fazer a seleção do elemento
+        combo.selectByVisibleText("O que eh esporte?");
+        combo.selectByVisibleText("Natacao");
+        combo.selectByVisibleText("Corrida");
+
+        //Verificar se foram marcadas tres opções
+        List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
+        Assert.assertEquals(3, allSelectedOptions.size());
+
+        //desmarcar opção do combo
+        combo.deselectByVisibleText("Corrida");
+        allSelectedOptions = combo.getAllSelectedOptions();
+        Assert.assertEquals(2, allSelectedOptions.size());
+
+        driver.quit();
+
+    }
+
+    @Test
+    public void deveInteragirComBotoes() {
+        System.setProperty("webdriver.gecko.driver", "/home/local/CONDUCTOR/priscila.hirotsu/Documentos/projetos/PESSOAL/testeSelium/src/main/resources/firefox/geckodriver");
+        WebDriver driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
+
+        WebElement botao = driver.findElement(By.id("buttonSimple"));
+        botao.click();
+
+        Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+
+        driver.quit();
+    }
+
+    @Test
+    public void deveInteragirComLinks() {
+        System.setProperty("webdriver.gecko.driver", "/home/local/CONDUCTOR/priscila.hirotsu/Documentos/projetos/PESSOAL/testeSelium/src/main/resources/firefox/geckodriver");
+        WebDriver driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
+
+        WebElement link =driver.findElement(By.linkText("Voltar"));
+        link.click();
+
+        Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
+
+        driver.quit();
+    }
+
+    @Test
+    public void deveBuscarTextosNaPagina() {
+        System.setProperty("webdriver.gecko.driver", "/home/local/CONDUCTOR/priscila.hirotsu/Documentos/projetos/PESSOAL/testeSelium/src/main/resources/firefox/geckodriver");
+        WebDriver driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
+
+        Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
+        Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
+        Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
+
+        driver.quit();
     }
 }
