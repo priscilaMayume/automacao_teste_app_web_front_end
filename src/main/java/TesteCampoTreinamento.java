@@ -81,20 +81,20 @@ public class TesteCampoTreinamento {
         List<String> opcoesMarcadas = dsl.obterValoresCombo("elementosForm:esportes");
         Assert.assertEquals(3, opcoesMarcadas.size());
 
-        dsl.deselecionarCombo("elementosForm:esportes", "Corrida");
+        dsl.deveSelecionarCombo("elementosForm:esportes", "Corrida");
         opcoesMarcadas = dsl.obterValoresCombo("elementosForm:esportes");
         Assert.assertEquals(2, opcoesMarcadas.size());
         Assert.assertTrue(opcoesMarcadas.containsAll(Arrays.asList("Natacao", "O que eh esporte?")));
     }
 
     @Test
-    public void deveinteragirComBotoes() {
+    public void deveInteragirComBotoes() {
         dsl.clicarBotao("buttonSimple");
         Assert.assertEquals("Obrigado!", dsl.obterValueElemento("buttonSimple"));
     }
 
     @Test
-    public void deveinteragirComLinks() {
+    public void deveInteragirComLinks() {
         dsl.clicarLink("Voltar");
         Assert.assertEquals("Voltou!", dsl.obterTexto("resultado"));
     }

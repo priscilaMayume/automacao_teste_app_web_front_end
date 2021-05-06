@@ -53,7 +53,7 @@ public class DSL {
         combo.selectByVisibleText(valor);
     }
 
-    public void deselecionarCombo(String id, String valor) {
+    public void deveSelecionarCombo(String id, String valor) {
         WebElement element = driver.findElement(By.id(id));
         Select combo = new Select(element);
         combo.deselectByVisibleText(valor);
