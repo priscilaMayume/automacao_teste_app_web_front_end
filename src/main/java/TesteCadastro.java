@@ -27,8 +27,8 @@ public class TesteCadastro {
     public void deveInteragirComAlertPrompt() {
         dsl.escrever("elementosForm:nome","Priscila Mayume");
         dsl.escrever("elementosForm:sobrenome","Santos Hirotsu");
-        dsl.clicarRadioButton("elementosForm:sexo:1");
-        dsl.clicarRadioButton("elementosForm:comidaFavorita:2");
+        dsl.clicarRadio("elementosForm:sexo:1");
+        dsl.clicarRadio("elementosForm:comidaFavorita:2");
 
         //identificar o campo do combo        //selecionar um elemento do combo
         dsl.selecionarCombo("elementosForm:escolaridade", "Mestrado");
